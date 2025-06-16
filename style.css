@@ -766,7 +766,7 @@ main {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-medium);
     color: var(--color-text);
-    margin: 0 0 var(--space-12) 0;
+    margin: 0 0 0 0;
 }
 
 .reward-text {
