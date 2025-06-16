@@ -753,7 +753,7 @@ main {
 }
 
 .checkmark {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -797,7 +797,7 @@ main {
     }
     
     .checkmark {
-        font-size: 16px;
+        font-size: 20px;
     }
     
     .stamps-container {
@@ -817,6 +817,6 @@ main {
     }
     
     .checkmark {
-        font-size: 14px;
+        font-size: 18px;
     }
 }
