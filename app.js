@@ -1,22 +1,22 @@
 // Application data
 const appData = {
-    "companyName": "Coffee Corner",
-    "totalStamps": 10,
-    "collectedStamps": 6,
-    "rewardText": "Get your 10th stamp for a FREE coffee!",
-    "stamps": [
-        {"id": 1, "collected": true},
-        {"id": 2, "collected": true},
-        {"id": 3, "collected": true},
-        {"id": 4, "collected": true},
-        {"id": 5, "collected": true},
-        {"id": 6, "collected": true},
-        {"id": 7, "collected": false},
-        {"id": 8, "collected": false},
-        {"id": 9, "collected": false},
-        {"id": 10, "collected": false}
-    ]
+    companyName: "Coffee Corner",
+    totalStamps: 10,
+    collectedStamps: 6,
+    rewardText: "Get your 10th stamp for a FREE coffee!",
+    stamps: []
 };
+
+// Build the stamp array based on total and collected values
+function generateStamps() {
+    appData.stamps = [];
+    for (let i = 1; i <= appData.totalStamps; i++) {
+        appData.stamps.push({
+            id: i,
+            collected: i <= appData.collectedStamps
+        });
+    }
+}
 
 // DOM elements
 const stampsContainer = document.getElementById('stamps-container');
@@ -77,6 +77,7 @@ function addStampAnimations() {
 
 // Initialize the application
 function initApp() {
+    generateStamps();
     renderStamps();
     updateProgressInfo();
     

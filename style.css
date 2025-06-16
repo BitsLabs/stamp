@@ -706,7 +706,7 @@ main {
 .stamps-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    /* Let the grid grow vertically based on the number of stamps */
     gap: var(--space-16);
     margin-bottom: var(--space-24);
     justify-items: center;
