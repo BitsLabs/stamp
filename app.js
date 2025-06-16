@@ -1,7 +1,7 @@
 // Application data
 const appData = {
     companyName: "Coffee Corner",
-    totalStamps: 10,
+    totalStamps: 15,
     collectedStamps: 6,
     rewardText: "Get your 10th stamp for a FREE coffee!",
     stamps: []
