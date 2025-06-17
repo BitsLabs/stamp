@@ -22,6 +22,13 @@ function generateStamps() {
 const stampsContainer = document.getElementById('stamps-container');
 const collectedCountElement = document.getElementById('collected-count');
 const totalCountElement = document.getElementById('total-count');
+const pathVariableElement = document.getElementById('path-variable');
+
+// Utility to read the first path segment after the origin
+function getPathVariable() {
+    const segments = window.location.pathname.split('/').filter(Boolean);
+    return segments[0] || '';
+}
 
 // Function to create a stamp element
 function createStampElement(stamp) {
@@ -75,12 +82,21 @@ function addStampAnimations() {
     });
 }
 
+// Display the variable from the URL path
+function displayPathVariable() {
+    const variable = getPathVariable();
+    if (pathVariableElement) {
+        pathVariableElement.textContent = variable ? `Path variable: ${variable}` : '';
+    }
+}
+
 // Initialize the application
 function initApp() {
     generateStamps();
     renderStamps();
     updateProgressInfo();
-    
+    displayPathVariable();
+
     // Add animations after a short delay to ensure DOM is ready
     setTimeout(addStampAnimations, 100);
 }
