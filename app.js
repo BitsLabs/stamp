@@ -4,7 +4,8 @@ const appData = {
     totalStamps: 5,
     collectedStamps: 4,
     rewardText: "Get your 10th stamp for a FREE coffee!",
-    stamps: []
+    stamps: [],
+    queryValue: ""
 };
 
 // Build the stamp array based on total and collected values
@@ -22,6 +23,14 @@ function generateStamps() {
 const stampsContainer = document.getElementById('stamps-container');
 const collectedCountElement = document.getElementById('collected-count');
 const totalCountElement = document.getElementById('total-count');
+const queryValueElement = document.getElementById('query-value');
+
+// Read the part of the URL after the '?'
+function readQueryValue() {
+    return window.location.search
+        ? window.location.search.substring(1)
+        : '';
+}
 
 // Function to create a stamp element
 function createStampElement(stamp) {
@@ -80,7 +89,12 @@ function initApp() {
     generateStamps();
     renderStamps();
     updateProgressInfo();
-    
+
+    appData.queryValue = readQueryValue();
+    if (queryValueElement) {
+        queryValueElement.textContent = appData.queryValue;
+    }
+
     // Add animations after a short delay to ensure DOM is ready
     setTimeout(addStampAnimations, 100);
 }
