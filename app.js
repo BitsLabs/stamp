@@ -23,6 +23,13 @@ const stampsContainer = document.getElementById('stamps-container');
 const collectedCountElement = document.getElementById('collected-count');
 const totalCountElement = document.getElementById('total-count');
 
+// Read the text that appears after '?' in the URL
+function getQueryValue() {
+    return window.location.search.startsWith('?')
+        ? window.location.search.substring(1)
+        : '';
+}
+
 // Function to create a stamp element
 function createStampElement(stamp) {
     const stampElement = document.createElement('div');
@@ -77,6 +84,11 @@ function addStampAnimations() {
 
 // Initialize the application
 function initApp() {
+    const queryValue = getQueryValue();
+    if (queryValue) {
+        console.log('Query value:', queryValue);
+    }
+
     generateStamps();
     renderStamps();
     updateProgressInfo();
