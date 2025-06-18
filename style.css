@@ -669,6 +669,7 @@ select.form-control {
 main {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -911,4 +912,25 @@ main {
     font-size: 24px;
     color: #fff;
     cursor: pointer;
+}
+
+/* Show QR Code button */
+.qr-button {
+    margin-top: var(--space-16);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-text);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-8) var(--space-16);
+}
+.qr-button:hover {
+    box-shadow: var(--shadow-md);
+}
+.qr-button__icon {
+    width: 20px;
+    height: 20px;
 }

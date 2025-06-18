@@ -25,11 +25,14 @@
                     <p id="error-message" class="error-text hidden"></p>
                     <p id="query-value" class="progress-text"></p>
                 </div>
-                <button id="show-qr" class="btn btn--secondary">Show QR Code</button>
-                <div id="qr-overlay" class="qr-overlay hidden">
-                    <button id="qr-close" class="qr-close">×</button>
-                    <canvas id="qr-canvas"></canvas>
-                </div>
+            </div>
+            <button id="show-qr" class="btn qr-button">
+                <img src="assets/qrcode.svg" alt="" aria-hidden="true" class="qr-button__icon">
+                <span>Show QR Code</span>
+            </button>
+            <div id="qr-overlay" class="qr-overlay hidden">
+                <button id="qr-close" class="qr-close">×</button>
+                <canvas id="qr-canvas"></canvas>
             </div>
         </main>
         <footer class="footer">
