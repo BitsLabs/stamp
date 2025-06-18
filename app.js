@@ -43,6 +43,8 @@ const stampsContainer = document.getElementById('stamps-container');
 const collectedCountElement = document.getElementById('collected-count');
 const totalCountElement = document.getElementById('total-count');
 const queryValueElement = document.getElementById('query-value');
+const progressTextElement = document.getElementById('progress-text');
+const errorMessageElement = document.getElementById('error-message');
 
 // Read the part of the URL after the '?'
 function readQueryValue() {
@@ -123,8 +125,21 @@ async function initApp() {
         appData.totalStamps = 1;
         appData.collectedStamps = 0;
         appData.stamps = [{ id: 1, error: true }];
+        if (errorMessageElement) {
+            errorMessageElement.textContent = 'Invalid card ID.';
+            errorMessageElement.style.display = 'block';
+        }
+        if (progressTextElement) {
+            progressTextElement.style.display = 'none';
+        }
     } else {
         generateStamps();
+        if (progressTextElement) {
+            progressTextElement.style.display = 'block';
+        }
+        if (errorMessageElement) {
+            errorMessageElement.style.display = 'none';
+        }
     }
 
     renderStamps();

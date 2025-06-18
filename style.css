@@ -768,6 +768,11 @@ main {
 }
 
 .error-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     font-size: 28px;
     font-weight: bold;
 }
@@ -782,6 +787,9 @@ main {
     font-weight: var(--font-weight-medium);
     color: var(--color-text);
     margin: 0 0 0 0;
+}
+.error-text {
+    color: var(--color-error);
 }
 
 .reward-text {
