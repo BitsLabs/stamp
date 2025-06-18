@@ -19,7 +19,7 @@ async function readData(id) {
 
 // Application data
 const appData = {
-    companyName: "Coffee Corner",
+    companyName: "Stamp Card",
     totalStamps: 0,
     collectedStamps: 0,
     rewardText: "Get your 10th stamp for a FREE coffee!",
