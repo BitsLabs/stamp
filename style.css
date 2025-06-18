@@ -712,6 +712,12 @@ main {
     justify-items: center;
 }
 
+/* When only a single stamp is shown (e.g. error state),
+   center it by using a single grid column */
+.stamps-container.single-stamp {
+    grid-template-columns: 1fr;
+}
+
 .stamp {
     width: 56px;
     height: 56px;

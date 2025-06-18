@@ -136,8 +136,10 @@ async function initApp() {
         appData.totalStamps = 1;
         appData.collectedStamps = 0;
         appData.stamps = [{ id: 1, error: true }];
+        stampsContainer.classList.add('single-stamp');
     } else {
         generateStamps();
+        stampsContainer.classList.remove('single-stamp');
     }
 
     renderStamps();
