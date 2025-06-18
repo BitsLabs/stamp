@@ -689,7 +689,8 @@ main {
 
 .company-logo {
     display: block;
-    max-height: 50px;
+    max-height: 40px;
+    max-width: 200px;
     width: auto;
     margin: 0 auto;
 }
@@ -827,7 +828,8 @@ main {
     }
 
     .company-logo {
-        max-height: 50px;
+        max-height: 40px;
+        max-width: 180px;
     }
     
     .card {
@@ -858,7 +860,8 @@ main {
     }
 
     .company-logo {
-        max-height: 40px;
+        max-height: 32px;
+        max-width: 150px;
     }
     
     .stamp {

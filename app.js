@@ -60,9 +60,20 @@ async function loadHeaderLogo() {
     try {
         const logoRef = doc(db, 'kiyosa', 'headerimage');
         const logoSnap = await getDoc(logoRef);
-        if (logoSnap.exists() && logoSnap.data().url) {
-            companyLogoElement.src = logoSnap.data().url;
-            companyLogoElement.alt = `${appData.companyName} logo`;
+        if (logoSnap.exists()) {
+            const data = logoSnap.data();
+            const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+            const setLogo = () => {
+                const prefersDark = matcher.matches;
+                companyLogoElement.src = prefersDark && data.url_dark ? data.url_dark : data.url;
+                companyLogoElement.alt = `${appData.companyName} logo`;
+            };
+            setLogo();
+            if (typeof matcher.addEventListener === 'function') {
+                matcher.addEventListener('change', setLogo);
+            } else if (typeof matcher.addListener === 'function') {
+                matcher.addListener(setLogo);
+            }
         }
     } catch (e) {
         console.error('Failed to load header logo', e);
