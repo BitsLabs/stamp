@@ -752,7 +752,22 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+.stamp--error {
+    background-color: var(--color-error);
+    color: white;
+    box-shadow: 0 4px 8px rgba(var(--color-error-rgb), 0.3);
+}
+
+.stamp--error:hover {
+    box-shadow: 0 6px 12px rgba(var(--color-error-rgb), 0.4);
+}
+
 .checkmark {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.error-mark {
     font-size: 28px;
     font-weight: bold;
 }
@@ -799,6 +814,9 @@ main {
     .checkmark {
         font-size: 24px;
     }
+    .error-mark {
+        font-size: 24px;
+    }
     
     .stamps-container {
         gap: var(--space-12);
@@ -817,6 +835,9 @@ main {
     }
     
     .checkmark {
+        font-size: 20px;
+    }
+    .error-mark {
         font-size: 20px;
     }
 }
