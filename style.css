@@ -770,6 +770,11 @@ main {
 .error-mark {
     font-size: 28px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .card-info {
@@ -789,6 +794,13 @@ main {
     color: var(--color-text-secondary);
     margin: 0;
     font-style: italic;
+}
+
+.error-text {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-error);
+    margin: var(--space-8) 0 0 0;
 }
 
 /* Responsive design */
