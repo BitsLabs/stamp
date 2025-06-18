@@ -45,12 +45,28 @@ const totalCountElement = document.getElementById('total-count');
 const progressTextElement = document.getElementById('progress-text');
 const errorMessageElement = document.getElementById('error-message');
 const queryValueElement = document.getElementById('query-value');
+const companyLogoElement = document.getElementById('company-logo');
 
 // Read the part of the URL after the '?'
 function readQueryValue() {
     return window.location.search
         ? window.location.search.substring(1)
         : '';
+}
+
+// Load header logo from Firestore
+async function loadHeaderLogo() {
+    if (!companyLogoElement) return;
+    try {
+        const logoRef = doc(db, 'kiyosa', 'headerimage');
+        const logoSnap = await getDoc(logoRef);
+        if (logoSnap.exists() && logoSnap.data().url) {
+            companyLogoElement.src = logoSnap.data().url;
+            companyLogoElement.alt = `${appData.companyName} logo`;
+        }
+    } catch (e) {
+        console.error('Failed to load header logo', e);
+    }
 }
 
 // Function to create a stamp element
@@ -126,6 +142,7 @@ function addStampAnimations() {
 
 // Initialize the application
 async function initApp() {
+    await loadHeaderLogo();
     appData.queryValue = readQueryValue();
     if (queryValueElement) {
         queryValueElement.textContent = appData.queryValue;
