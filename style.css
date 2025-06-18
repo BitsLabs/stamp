@@ -873,7 +873,19 @@ main {
     .checkmark {
         font-size: 20px;
     }
-    .error-mark {
-        font-size: 20px;
-    }
+  .error-mark {
+      font-size: 20px;
+  }
+}
+
+.footer {
+    text-align: center;
+    margin-top: var(--space-20);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: underline;
 }
