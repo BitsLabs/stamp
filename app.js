@@ -34,14 +34,16 @@ const translations = {
         progressPrefix: 'of',
         progressSuffix: 'stamps',
         invalidCode: 'Invalid code',
-        serviceText: 'A service by'
+        serviceText: 'A service by',
+        showQrCode: 'Show QR Code'
     },
     de: {
         loyaltyCard: 'Treuekarte',
         progressPrefix: 'von',
         progressSuffix: 'Stempel',
         invalidCode: 'Ungültiger Code',
-        serviceText: 'Ein Service von'
+        serviceText: 'Ein Service von',
+        showQrCode: 'QR-Code anzeigen'
     }
 };
 
@@ -82,6 +84,7 @@ const progressPrefixElement = document.getElementById('progress-prefix');
 const progressSuffixElement = document.getElementById('progress-suffix');
 const serviceTextElement = document.getElementById('service-text');
 const qrBtn = document.getElementById('show-qr');
+const showQrLabelElement = document.getElementById('show-qr-label');
 const qrOverlay = document.getElementById('qr-overlay');
 const qrClose = document.getElementById('qr-close');
 const qrCanvas = document.getElementById('qr-canvas');
@@ -106,6 +109,7 @@ function applyTranslations() {
     if (progressPrefixElement) progressPrefixElement.textContent = t.progressPrefix;
     if (progressSuffixElement) progressSuffixElement.textContent = t.progressSuffix;
     if (serviceTextElement) serviceTextElement.textContent = t.serviceText;
+    if (showQrLabelElement) showQrLabelElement.textContent = t.showQrCode;
 }
 
 // Read the part of the URL after the '?'
