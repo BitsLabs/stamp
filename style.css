@@ -689,7 +689,7 @@ main {
 
 .company-logo {
     display: block;
-    max-height: 56px;
+    max-height: 50px;
     width: auto;
     margin: 0 auto;
 }
