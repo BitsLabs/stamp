@@ -1,14 +1,16 @@
 import { db, getDoc, doc } from './firebase.js';
 
 async function readData() {
-  const ref = doc(db, 'kiyosa', '12414');
-  const snap = await getDoc(ref);
+    const ref = doc(db, 'kiyosa', '12414');
+    const snap = await getDoc(ref);
 
-  if (snap.exists()) {
-    console.log('Document data:', snap.data());
-  } else {
-    console.log('No such document!');
-  }
+    if (snap.exists()) {
+        const data = snap.data();
+        appData.totalStamps = data.total;
+        appData.collectedStamps = data.current;
+    } else {
+        console.log('No such document!');
+    }
 }
 
 // Application data
@@ -98,11 +100,11 @@ function addStampAnimations() {
 }
 
 // Initialize the application
-function initApp() {
+async function initApp() {
+    await readData();
     generateStamps();
     renderStamps();
     updateProgressInfo();
-    readData()
 
     appData.queryValue = readQueryValue();
     if (queryValueElement) {
