@@ -27,6 +27,38 @@ const appData = {
     queryValue: ""
 };
 
+// Translation strings
+const translations = {
+    en: {
+        loyaltyCard: 'Loyalty Card',
+        progressPrefix: 'of',
+        progressSuffix: 'stamps',
+        invalidCode: 'Invalid code',
+        serviceText: 'A service by'
+    },
+    de: {
+        loyaltyCard: 'Treuekarte',
+        progressPrefix: 'von',
+        progressSuffix: 'Stempel',
+        invalidCode: 'Ungültiger Code',
+        serviceText: 'Ein Service von'
+    }
+};
+
+let currentLang = 'en';
+
+function detectLanguage() {
+    const supported = Object.keys(translations);
+    const browserLangs = navigator.languages || [navigator.language || 'en'];
+    for (const l of browserLangs) {
+        const short = l.slice(0, 2);
+        if (supported.includes(short)) {
+            return short;
+        }
+    }
+    return 'en';
+}
+
 // Build the stamp array based on total and collected values
 function generateStamps() {
     appData.stamps = []; 
@@ -46,6 +78,18 @@ const progressTextElement = document.getElementById('progress-text');
 const errorMessageElement = document.getElementById('error-message');
 const queryValueElement = document.getElementById('query-value');
 const companyLogoElement = document.getElementById('company-logo');
+const progressPrefixElement = document.getElementById('progress-prefix');
+const progressSuffixElement = document.getElementById('progress-suffix');
+const serviceTextElement = document.getElementById('service-text');
+
+function applyTranslations() {
+    const t = translations[currentLang] || translations.en;
+    document.documentElement.lang = currentLang;
+    document.title = `${appData.companyName} - ${t.loyaltyCard}`;
+    if (progressPrefixElement) progressPrefixElement.textContent = t.progressPrefix;
+    if (progressSuffixElement) progressSuffixElement.textContent = t.progressSuffix;
+    if (serviceTextElement) serviceTextElement.textContent = t.serviceText;
+}
 
 // Read the part of the URL after the '?'
 function readQueryValue() {
@@ -121,7 +165,7 @@ function updateProgressInfo(hasError) {
     if (hasError) {
         if (progressTextElement) progressTextElement.classList.add('hidden');
         if (errorMessageElement) {
-            errorMessageElement.textContent = 'Invalid code';
+            errorMessageElement.textContent = translations[currentLang].invalidCode;
             errorMessageElement.classList.remove('hidden');
         }
         return;
@@ -153,6 +197,8 @@ function addStampAnimations() {
 
 // Initialize the application
 async function initApp() {
+    currentLang = detectLanguage();
+    applyTranslations();
     await loadHeaderLogo();
     appData.queryValue = readQueryValue();
     if (queryValueElement) {
