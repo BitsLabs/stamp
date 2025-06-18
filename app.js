@@ -42,6 +42,8 @@ function generateStamps() {
 const stampsContainer = document.getElementById('stamps-container');
 const collectedCountElement = document.getElementById('collected-count');
 const totalCountElement = document.getElementById('total-count');
+const progressTextElement = document.getElementById('progress-text');
+const errorMessageElement = document.getElementById('error-message');
 const queryValueElement = document.getElementById('query-value');
 
 // Read the part of the URL after the '?'
@@ -88,7 +90,18 @@ function renderStamps() {
 }
 
 // Function to update progress information
-function updateProgressInfo() {
+function updateProgressInfo(hasError) {
+    if (hasError) {
+        if (progressTextElement) progressTextElement.classList.add('hidden');
+        if (errorMessageElement) {
+            errorMessageElement.textContent = 'Invalid code';
+            errorMessageElement.classList.remove('hidden');
+        }
+        return;
+    }
+
+    if (progressTextElement) progressTextElement.classList.remove('hidden');
+    if (errorMessageElement) errorMessageElement.classList.add('hidden');
     collectedCountElement.textContent = appData.collectedStamps;
     totalCountElement.textContent = appData.totalStamps;
 }
@@ -128,7 +141,7 @@ async function initApp() {
     }
 
     renderStamps();
-    updateProgressInfo();
+    updateProgressInfo(!hasData);
 
     // Add animations after a short delay to ensure DOM is ready
     setTimeout(addStampAnimations, 100);
