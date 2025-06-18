@@ -81,6 +81,19 @@ const companyLogoElement = document.getElementById('company-logo');
 const progressPrefixElement = document.getElementById('progress-prefix');
 const progressSuffixElement = document.getElementById('progress-suffix');
 const serviceTextElement = document.getElementById('service-text');
+const qrBtn = document.getElementById('show-qr');
+const qrOverlay = document.getElementById('qr-overlay');
+const qrClose = document.getElementById('qr-close');
+const qrCanvas = document.getElementById('qr-canvas');
+
+qrBtn.addEventListener('click', () => {
+    QRCode.toCanvas(qrCanvas, window.location.href);
+    qrOverlay.classList.remove('hidden');
+});
+
+qrClose.addEventListener('click', () => {
+    qrOverlay.classList.add('hidden');
+});
 
 function applyTranslations() {
     const t = translations[currentLang] || translations.en;

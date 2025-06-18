@@ -25,6 +25,11 @@
                     <p id="error-message" class="error-text hidden"></p>
                     <p id="query-value" class="progress-text"></p>
                 </div>
+                <button id="show-qr" class="btn btn--secondary">Show QR Code</button>
+                <div id="qr-overlay" class="qr-overlay hidden">
+                    <button id="qr-close" class="qr-close">×</button>
+                    <canvas id="qr-canvas"></canvas>
+                </div>
             </div>
         </main>
         <footer class="footer">
@@ -32,6 +37,7 @@
         </footer>
     </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@^1.5/build/qrcode.min.js"></script>
     <script type="module" src="app.js"></script>
 </body>
 </html>
