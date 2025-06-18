@@ -1,23 +1,27 @@
 import { db, getDoc, doc } from './firebase.js';
 
-async function readData() {
-    const ref = doc(db, 'kiyosa', '12414');
+async function readData(id) {
+    if (!id) {
+        return false;
+    }
+    const ref = doc(db, 'kiyosa', id);
     const snap = await getDoc(ref);
 
     if (snap.exists()) {
         const data = snap.data();
         appData.totalStamps = data.total;
         appData.collectedStamps = data.current;
-    } else {
-        console.log('No such document!');
+        return true;
     }
+    console.log('No such document!');
+    return false;
 }
 
 // Application data
 const appData = {
     companyName: "Coffee Corner",
-    totalStamps: 5,
-    collectedStamps: 4,
+    totalStamps: 0,
+    collectedStamps: 0,
     rewardText: "Get your 10th stamp for a FREE coffee!",
     stamps: [],
     queryValue: ""
@@ -50,6 +54,14 @@ function readQueryValue() {
 // Function to create a stamp element
 function createStampElement(stamp) {
     const stampElement = document.createElement('div');
+    if (stamp.error) {
+        stampElement.className = 'stamp stamp--error';
+        const mark = document.createElement('span');
+        mark.className = 'error-mark';
+        mark.textContent = '✗';
+        stampElement.appendChild(mark);
+        return stampElement;
+    }
     stampElement.className = `stamp ${stamp.collected ? 'stamp--collected' : 'stamp--uncollected'}`;
     stampElement.setAttribute('data-stamp-id', stamp.id);
     
@@ -101,15 +113,22 @@ function addStampAnimations() {
 
 // Initialize the application
 async function initApp() {
-    await readData();
-    generateStamps();
-    renderStamps();
-    updateProgressInfo();
-
     appData.queryValue = readQueryValue();
     if (queryValueElement) {
         queryValueElement.textContent = appData.queryValue;
     }
+
+    const hasData = await readData(appData.queryValue);
+    if (!hasData) {
+        appData.totalStamps = 1;
+        appData.collectedStamps = 0;
+        appData.stamps = [{ id: 1, error: true }];
+    } else {
+        generateStamps();
+    }
+
+    renderStamps();
+    updateProgressInfo();
 
     // Add animations after a short delay to ensure DOM is ready
     setTimeout(addStampAnimations, 100);
