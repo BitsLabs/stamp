@@ -45,6 +45,27 @@ const totalCountElement = document.getElementById('total-count');
 const progressTextElement = document.getElementById('progress-text');
 const errorMessageElement = document.getElementById('error-message');
 const queryValueElement = document.getElementById('query-value');
+const headerLogoElement = document.getElementById('header-logo');
+const companyNameElement = document.getElementById('company-name');
+
+async function loadHeaderImage() {
+    try {
+        const ref = doc(db, 'kiyosa', 'headerimage');
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+            const data = snap.data();
+            if (data.url && headerLogoElement) {
+                headerLogoElement.src = data.url;
+                headerLogoElement.classList.remove('hidden');
+                if (companyNameElement) {
+                    companyNameElement.classList.add('hidden');
+                }
+            }
+        }
+    } catch (e) {
+        console.error('Error loading header image', e);
+    }
+}
 
 // Read the part of the URL after the '?'
 function readQueryValue() {
@@ -130,6 +151,8 @@ async function initApp() {
     if (queryValueElement) {
         queryValueElement.textContent = appData.queryValue;
     }
+
+    loadHeaderImage();
 
     const hasData = await readData(appData.queryValue);
     if (!hasData) {

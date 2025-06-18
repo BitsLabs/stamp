@@ -687,6 +687,13 @@ main {
     letter-spacing: var(--letter-spacing-tight);
 }
 
+.header-logo {
+    height: var(--font-size-4xl);
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 .card {
     background-color: var(--color-surface);
     border-radius: var(--radius-lg);
@@ -817,6 +824,10 @@ main {
     
     .company-name {
         font-size: var(--font-size-3xl);
+    }
+
+    .header-logo {
+        height: var(--font-size-3xl);
     }
     
     .card {
