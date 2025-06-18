@@ -1,3 +1,16 @@
+import { db, getDoc, doc } from './firebase.js';
+
+async function readData() {
+  const ref = doc(db, 'kiyosa', '12414');
+  const snap = await getDoc(ref);
+
+  if (snap.exists()) {
+    console.log('Document data:', snap.data());
+  } else {
+    console.log('No such document!');
+  }
+}
+
 // Application data
 const appData = {
     companyName: "Coffee Corner",

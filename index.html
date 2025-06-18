@@ -29,5 +29,20 @@
     </div>
     
     <script src="app.js"></script>
+    <script type="module">
+        import { initializeApp } from 'firebase/app';
+        import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+        const firebaseConfig = {
+    apiKey: "AIzaSyA6NP_jDbxPsMz0r1ItHJYRrcE5JlbWv18",
+    authDomain: "stamp-4c525.firebaseapp.com",
+    projectId: "stamp-4c525",
+    storageBucket: "stamp-4c525.firebasestorage.app",
+    messagingSenderId: "759454052430",
+    appId: "1:759454052430:web:f0581868180f8fa262531f",
+    measurementId: "G-FTGPKGD633"
+  };
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
 </body>
 </html>
