@@ -687,6 +687,13 @@ main {
     letter-spacing: var(--letter-spacing-tight);
 }
 
+.company-logo {
+    display: block;
+    max-height: 40px;
+    width: auto;
+    margin: 0 auto;
+}
+
 .card {
     background-color: var(--color-surface);
     border-radius: var(--radius-lg);
@@ -814,9 +821,13 @@ main {
     .container {
         padding: var(--space-20) var(--space-12);
     }
-    
+
     .company-name {
         font-size: var(--font-size-3xl);
+    }
+
+    .company-logo {
+        max-height: 32px;
     }
     
     .card {
@@ -844,6 +855,10 @@ main {
 @media (max-width: 320px) {
     .stamps-container {
         gap: var(--space-8);
+    }
+
+    .company-logo {
+        max-height: 28px;
     }
     
     .stamp {
