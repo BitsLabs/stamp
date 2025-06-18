@@ -23,7 +23,7 @@ const appData = {
 
 // Build the stamp array based on total and collected values
 function generateStamps() {
-    appData.stamps = [];
+    appData.stamps = []; 
     for (let i = 1; i <= appData.totalStamps; i++) {
         appData.stamps.push({
             id: i,
