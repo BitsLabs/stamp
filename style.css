@@ -893,8 +893,13 @@ main {
 
 .qr-overlay {
     position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(128, 128, 128, 0.95);
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -912,6 +917,10 @@ main {
     font-size: 24px;
     color: #fff;
     cursor: pointer;
+}
+
+#qr-canvas {
+    border-radius: var(--radius-md);
 }
 
 /* Show QR Code button */
