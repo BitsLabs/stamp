@@ -956,3 +956,13 @@ main {
     width: 20px;
     height: 20px;
 }
+
+@media (prefers-color-scheme: light) {
+    .qr-button__icon {
+        filter: invert(1);
+    }
+}
+
+[data-color-scheme="light"] .qr-button__icon {
+    filter: invert(1);
+}
