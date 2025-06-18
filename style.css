@@ -906,7 +906,7 @@ main {
 .qr-popup {
     position: relative;
     background: #333;
-    padding: var(--space-32) var(--space-32);
+    padding: 60px 40px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
 }
@@ -922,6 +922,8 @@ main {
 }
 #qr-canvas {
     display: block;
+    width: 300px;
+    height: 300px;
     border-radius: var(--radius-sm);
 }
 
