@@ -894,7 +894,7 @@ main {
 .qr-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -903,15 +903,26 @@ main {
 .qr-overlay.hidden {
     display: none;
 }
+.qr-popup {
+    position: relative;
+    background: #333;
+    padding: var(--space-32) var(--space-24);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
 .qr-close {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: var(--space-8);
+    right: var(--space-8);
     background: none;
     border: none;
     font-size: 24px;
     color: #fff;
     cursor: pointer;
+}
+#qr-canvas {
+    display: block;
+    border-radius: var(--radius-sm);
 }
 
 /* Show QR Code button */
