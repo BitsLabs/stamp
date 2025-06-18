@@ -925,6 +925,9 @@ main {
 #qr-canvas {
     display: block;
     border-radius: var(--radius-sm);
+    padding: var(--space-16);
+    margin: 0 auto;
+    background-color: #fff;
 }
 .qr-param {
     margin-top: var(--space-16);

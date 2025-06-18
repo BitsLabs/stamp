@@ -88,7 +88,7 @@ const qrCanvas = document.getElementById('qr-canvas');
 const qrParamElement = document.getElementById('qr-param-text');
 
 qrBtn.addEventListener('click', () => {
-    QRCode.toCanvas(qrCanvas, window.location.href, { width: 300 });
+    QRCode.toCanvas(qrCanvas, window.location.href, { width: 240, margin: 2 });
     if (qrParamElement) {
         qrParamElement.textContent = appData.queryValue;
     }
