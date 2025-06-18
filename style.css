@@ -752,6 +752,17 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+.stamp--error {
+    background-color: #C0152F;
+    color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.crossmark {
+    font-size: 28px;
+    font-weight: bold;
+}
+
 .checkmark {
     font-size: 28px;
     font-weight: bold;

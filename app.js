@@ -1,15 +1,20 @@
 import { db, getDoc, doc } from './firebase.js';
 
-async function readData() {
-    const ref = doc(db, 'kiyosa', '12414');
+async function readData(docId) {
+    const id = docId || '12414';
+    const ref = doc(db, 'kiyosa', id);
     const snap = await getDoc(ref);
 
     if (snap.exists()) {
+        appData.docExists = true;
         const data = snap.data();
         appData.totalStamps = data.total;
         appData.collectedStamps = data.current;
     } else {
         console.log('No such document!');
+        appData.docExists = false;
+        appData.totalStamps = 1;
+        appData.collectedStamps = 0;
     }
 }
 
@@ -20,16 +25,18 @@ const appData = {
     collectedStamps: 4,
     rewardText: "Get your 10th stamp for a FREE coffee!",
     stamps: [],
-    queryValue: ""
+    queryValue: "",
+    docExists: true
 };
 
 // Build the stamp array based on total and collected values
 function generateStamps() {
-    appData.stamps = []; 
+    appData.stamps = [];
     for (let i = 1; i <= appData.totalStamps; i++) {
         appData.stamps.push({
             id: i,
-            collected: i <= appData.collectedStamps
+            collected: i <= appData.collectedStamps,
+            error: !appData.docExists
         });
     }
 }
@@ -50,14 +57,25 @@ function readQueryValue() {
 // Function to create a stamp element
 function createStampElement(stamp) {
     const stampElement = document.createElement('div');
-    stampElement.className = `stamp ${stamp.collected ? 'stamp--collected' : 'stamp--uncollected'}`;
+    let stampClass = 'stamp ';
+    if (stamp.error) {
+        stampClass += 'stamp--error';
+    } else {
+        stampClass += stamp.collected ? 'stamp--collected' : 'stamp--uncollected';
+    }
+    stampElement.className = stampClass;
     stampElement.setAttribute('data-stamp-id', stamp.id);
-    
+
     if (stamp.collected) {
         const checkmark = document.createElement('span');
         checkmark.className = 'checkmark';
         checkmark.innerHTML = '✓';
         stampElement.appendChild(checkmark);
+    } else if (stamp.error) {
+        const cross = document.createElement('span');
+        cross.className = 'crossmark';
+        cross.innerHTML = '✕';
+        stampElement.appendChild(cross);
     }
     
     return stampElement;
@@ -101,15 +119,15 @@ function addStampAnimations() {
 
 // Initialize the application
 async function initApp() {
-    await readData();
-    generateStamps();
-    renderStamps();
-    updateProgressInfo();
-
     appData.queryValue = readQueryValue();
     if (queryValueElement) {
         queryValueElement.textContent = appData.queryValue;
     }
+
+    await readData(appData.queryValue);
+    generateStamps();
+    renderStamps();
+    updateProgressInfo();
 
     // Add animations after a short delay to ensure DOM is ready
     setTimeout(addStampAnimations, 100);
