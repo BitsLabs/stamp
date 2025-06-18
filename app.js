@@ -102,6 +102,7 @@ function initApp() {
     generateStamps();
     renderStamps();
     updateProgressInfo();
+    readData()
 
     appData.queryValue = readQueryValue();
     if (queryValueElement) {
