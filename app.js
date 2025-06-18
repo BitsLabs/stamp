@@ -87,7 +87,7 @@ const qrClose = document.getElementById('qr-close');
 const qrCanvas = document.getElementById('qr-canvas');
 
 qrBtn.addEventListener('click', () => {
-    QRCode.toCanvas(qrCanvas, window.location.href);
+    QRCode.toCanvas(qrCanvas, window.location.href, { width: 300 });
     qrOverlay.classList.remove('hidden');
 });
 

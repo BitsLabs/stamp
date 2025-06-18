@@ -898,6 +898,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 var(--space-20);
+    box-sizing: border-box;
     z-index: 1000;
 }
 .qr-overlay.hidden {
@@ -906,7 +908,9 @@ main {
 .qr-popup {
     position: relative;
     background: #333;
-    padding: var(--space-32) var(--space-32);
+    padding: 60px 40px;
+    width: 100%;
+    max-width: 380px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
 }
@@ -922,6 +926,9 @@ main {
 }
 #qr-canvas {
     display: block;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
     border-radius: var(--radius-sm);
 }
 
