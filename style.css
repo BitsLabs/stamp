@@ -909,6 +909,7 @@ main {
     padding: var(--space-32) var(--space-32);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
+    width: 320px;
 }
 .qr-close {
     position: absolute;
@@ -923,6 +924,15 @@ main {
 #qr-canvas {
     display: block;
     border-radius: var(--radius-sm);
+    width: 100%;
+    height: auto;
+}
+
+.qr-query {
+    margin-top: var(--space-8);
+    color: #fff;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Show QR Code button */

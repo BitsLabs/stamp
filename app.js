@@ -85,9 +85,13 @@ const qrBtn = document.getElementById('show-qr');
 const qrOverlay = document.getElementById('qr-overlay');
 const qrClose = document.getElementById('qr-close');
 const qrCanvas = document.getElementById('qr-canvas');
+const qrQueryElement = document.getElementById('qr-query');
 
 qrBtn.addEventListener('click', () => {
     QRCode.toCanvas(qrCanvas, window.location.href);
+    if (qrQueryElement) {
+        qrQueryElement.textContent = appData.queryValue;
+    }
     qrOverlay.classList.remove('hidden');
 });
 
