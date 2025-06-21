@@ -1,6 +1,6 @@
 import { db, getDoc, doc } from './firebase.js';
 
-const accCode = "S9El7UJM8awVc1gpr6A3NRiOr30gpv3cl5xKoZLgucZ7TO9S3xb9T4oLKPfatyobuEABDPP4NzQU2VS4Zls0ojLaB45lKxPTkDPL37dDO5swMfOOhzIM1BB8ewTjdce4"
+const accCode = "08ubKtZF150O6Q99kCT1nPUgx8t2tVNjWsJibPEaSRX0KqURd96ICmc4y5sJzJIKtwT0LJQvojdfCnIif0LSxfFufFlZXtxLz5y9jdBWaH90B25F0TNYOw1Wz01it1MA"
 
 async function readData(id) {
     if (!id) {
