@@ -37,7 +37,9 @@ const translations = {
         progressSuffix: 'stamps',
         invalidCode: 'Invalid code',
         serviceText: 'A service by',
-        showQrCode: 'Show QR Code'
+        showQrCode: 'Show QR Code',
+        go: 'Go',
+        cardNumber: 'Card Number'
     },
     de: {
         loyaltyCard: 'Treuekarte',
@@ -45,7 +47,9 @@ const translations = {
         progressSuffix: 'Stempel',
         invalidCode: 'Ungültiger Code',
         serviceText: 'Ein Service von',
-        showQrCode: 'QR-Code anzeigen'
+        showQrCode: 'QR-Code anzeigen',
+        go: 'Los',
+        cardNumber: 'Kartennummer'
     }
 };
 
@@ -94,6 +98,7 @@ const qrParamElement = document.getElementById('qr-param-text');
 const startForm = document.getElementById('start-form');
 const queryInput = document.getElementById('query-input');
 const queryGo = document.getElementById('query-go');
+const queryGoLabel = queryGo ? queryGo.querySelector('span') : null;
 const cardElement = document.getElementById('card');
 
 qrBtn.addEventListener('click', () => {
@@ -137,6 +142,8 @@ function applyTranslations() {
     if (progressSuffixElement) progressSuffixElement.textContent = t.progressSuffix;
     if (serviceTextElement) serviceTextElement.textContent = t.serviceText;
     if (showQrLabelElement) showQrLabelElement.textContent = t.showQrCode;
+    if (queryGoLabel) queryGoLabel.textContent = t.go;
+    if (queryInput) queryInput.placeholder = t.cardNumber;
 }
 
 // Read the part of the URL after the '?'
