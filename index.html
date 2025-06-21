@@ -28,12 +28,13 @@
             </div>
             <button id="show-qr" class="btn qr-button">
                 <img src="assets/qrcode.svg" alt="" aria-hidden="true" class="qr-button__icon">
-                <span>Show QR Code</span>
+                <span id="show-qr-label">Show QR Code</span>
             </button>
             <div id="qr-overlay" class="qr-overlay hidden">
                 <div class="qr-popup">
                     <button id="qr-close" class="qr-close">×</button>
                     <canvas id="qr-canvas"></canvas>
+                    <p id="qr-param-text" class="qr-param"></p>
                 </div>
             </div>
         </main>
