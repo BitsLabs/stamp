@@ -141,9 +141,12 @@ function applyTranslations() {
 
 // Read the part of the URL after the '?'
 function readQueryValue() {
-    return window.location.search
-        ? window.location.search.substring(1)
-        : '';
+    const search = window.location.search;
+    if (!search) {
+        return '';
+    }
+    const value = search.substring(1).trim();
+    return value;
 }
 
 // Load header logo from Firestore
