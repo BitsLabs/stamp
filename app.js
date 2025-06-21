@@ -91,6 +91,10 @@ const qrOverlay = document.getElementById('qr-overlay');
 const qrClose = document.getElementById('qr-close');
 const qrCanvas = document.getElementById('qr-canvas');
 const qrParamElement = document.getElementById('qr-param-text');
+const startForm = document.getElementById('start-form');
+const queryInput = document.getElementById('query-input');
+const queryGo = document.getElementById('query-go');
+const cardElement = document.getElementById('card');
 
 qrBtn.addEventListener('click', () => {
     QRCode.toCanvas(qrCanvas, window.location.href, { width: 240, margin: 2 });
@@ -103,6 +107,27 @@ qrBtn.addEventListener('click', () => {
 qrClose.addEventListener('click', () => {
     qrOverlay.classList.add('hidden');
 });
+
+if (queryGo) {
+    queryGo.addEventListener('click', () => {
+        if (!queryInput) return;
+        let val = queryInput.value.trim();
+        if (val.length < 5) {
+            val = val.padStart(5, '0');
+        }
+        if (val) {
+            window.location.href = `${window.location.pathname}?${encodeURIComponent(val)}`;
+        }
+    });
+    if (queryInput) {
+        queryInput.addEventListener('keypress', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                queryGo.click();
+            }
+        });
+    }
+}
 
 function applyTranslations() {
     const t = translations[currentLang] || translations.en;
@@ -224,6 +249,13 @@ async function initApp() {
     applyTranslations();
     await loadHeaderLogo();
     appData.queryValue = readQueryValue();
+    if (!appData.queryValue) {
+        if (startForm) startForm.classList.remove('hidden');
+        if (cardElement) cardElement.classList.add('hidden');
+        if (qrBtn) qrBtn.classList.add('hidden');
+        return;
+    }
+    if (qrBtn) qrBtn.classList.remove('hidden');
     if (queryValueElement) {
         queryValueElement.textContent = appData.queryValue;
     }

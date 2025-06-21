@@ -15,7 +15,11 @@
         </header>
         
         <main>
-            <div class="card">
+            <div id="start-form" class="hidden" style="text-align: center;">
+                <input id="query-input" class="form-control" type="text" placeholder="Code" />
+                <button id="query-go" class="btn qr-button">Go</button>
+            </div>
+            <div id="card" class="card">
                 <div class="stamps-container" id="stamps-container">
                     <!-- Stamps will be rendered here by JavaScript -->
                 </div>
@@ -26,7 +30,7 @@
                     <p id="query-value" class="progress-text"></p>
                 </div>
             </div>
-            <button id="show-qr" class="btn qr-button">
+            <button id="show-qr" class="btn qr-button hidden">
                 <img src="assets/qrcode.svg" alt="" aria-hidden="true" class="qr-button__icon">
                 <span id="show-qr-label">Show QR Code</span>
             </button>
