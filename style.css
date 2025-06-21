@@ -401,6 +401,11 @@ pre code {
     box-shadow var(--duration-fast) var(--ease-standard);
 }
 
+/* Prevent mobile zoom on focus for the start form input */
+#query-input {
+  font-size: var(--font-size-lg);
+}
+
 textarea.form-control {
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
