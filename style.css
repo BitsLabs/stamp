@@ -966,3 +966,9 @@ main {
 [data-color-scheme="light"] .qr-button__icon {
     filter: invert(1);
 }
+
+#search-container {
+    display: flex;
+    gap: var(--space-8);
+    margin-top: var(--space-16);
+}

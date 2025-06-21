@@ -92,6 +92,10 @@ const qrClose = document.getElementById('qr-close');
 const qrCanvas = document.getElementById('qr-canvas');
 const qrParamElement = document.getElementById('qr-param-text');
 
+const searchContainer = document.getElementById("search-container");
+const codeInput = document.getElementById("code-input");
+const goBtn = document.getElementById("go-btn");
+const cardElement = document.querySelector(".card");
 qrBtn.addEventListener('click', () => {
     QRCode.toCanvas(qrCanvas, window.location.href, { width: 240, margin: 2 });
     if (qrParamElement) {
@@ -100,6 +104,17 @@ qrBtn.addEventListener('click', () => {
     qrOverlay.classList.remove('hidden');
 });
 
+function handleGo() {
+    if (!codeInput) return;
+    let val = codeInput.value.trim();
+    if (val.length < 5) {
+        val = val.padStart(5, "0");
+    }
+    window.location.href = `${window.location.pathname}?${encodeURIComponent(val)}`;
+}
+
+goBtn && goBtn.addEventListener("click", handleGo);
+codeInput && codeInput.addEventListener("keypress", e => { if (e.key === "Enter") handleGo(); });
 qrClose.addEventListener('click', () => {
     qrOverlay.classList.add('hidden');
 });
@@ -226,6 +241,12 @@ async function initApp() {
     appData.queryValue = readQueryValue();
     if (queryValueElement) {
         queryValueElement.textContent = appData.queryValue;
+    }
+    if (!appData.queryValue) {
+        if (searchContainer) searchContainer.classList.remove("hidden");
+        if (cardElement) cardElement.classList.add("hidden");
+        if (qrBtn) qrBtn.classList.add("hidden");
+        return;
     }
 
     const hasData = await readData(appData.queryValue);
